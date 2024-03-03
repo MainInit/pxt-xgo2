@@ -1567,13 +1567,13 @@ namespace xgo {
         commands_buffer[1] = 0x00
         commands_buffer[2] = 0x09
         commands_buffer[3] = 0x00
-        commands_buffer[4] = 0x73
+        commands_buffer[4] = 0x76
         commands_buffer[7] = 0x00
         commands_buffer[8] = 0xAA
-        commands_buffer[5] = Math.map(mm, 0, 100, 0, 255)
-        commands_buffer[6] = ~(0x09 + 0x00 + 0x73 + commands_buffer[5])
+        commands_buffer[5] = Math.map(mm, 0, 100, 0, 200)
+        commands_buffer[6] = ~(0x09 + 0x00 + 0x76 + commands_buffer[5])
         serial.writeBuffer(commands_buffer)
-        basic.pause(1000)
+        //basic.pause(1000)
     }
 
     //% group="Robot Arm(V2)"
@@ -1591,11 +1591,11 @@ namespace xgo {
         commands_buffer[1] = 0x00
         commands_buffer[2] = 0x09
         commands_buffer[3] = 0x00
-        commands_buffer[4] = 0x74
+        commands_buffer[4] = 0x77
         commands_buffer[7] = 0x00
         commands_buffer[8] = 0xAA
-        commands_buffer[5] = Math.map(mm, 0, 100, 0, 255)
-        commands_buffer[6] = ~(0x09 + 0x00 + 0x74 + commands_buffer[5])
+        commands_buffer[5] = Math.map(mm, 0, 100, 0, 250)
+        commands_buffer[6] = ~(0x09 + 0x00 + 0x77 + commands_buffer[5])
         serial.writeBuffer(commands_buffer)
         basic.pause(1000)
     }
