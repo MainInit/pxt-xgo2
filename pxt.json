@@ -1,6 +1,6 @@
 {
     "name": "XGO",
-    "version": "1.3.9",
+    "version": "0.0.1",
     "description": "The intelligent programming dog XGO produced",
     "dependencies": {
         "core": "*",
