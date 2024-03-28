@@ -185,6 +185,17 @@ namespace xgo {
         pose4,
         //% block="pose5"
         pose5
+    } 
+
+    export enum walkState_enum {
+        //% block="diagonal"
+        diagonal,
+        //% block="walk"
+        walk,
+        //% block="high leg lift"
+        highLegLift,
+        //% block="fine tuning"
+        fineTuning
     }
 
     let pose1zx = pins.createBuffer(23)
@@ -200,8 +211,8 @@ namespace xgo {
 
     /**
     * TODO: initialization xgo
-    * @param tx describe parameter here, eg: SerialPin.P2
-    * @param rx describe parameter here, eg: SerialPin.P1
+    * @param tx describe parameter here, eg: SerialPin.P14
+    * @param rx describe parameter here, eg: SerialPin.P13
     */
     //% group="Basic"
     //% block="set XGO|TX %tx|RX %rx"
@@ -842,7 +853,7 @@ namespace xgo {
 
     //% group="Set Servo"
     //% weight=200
-    //% block="get the servo Angle of the %joint %part leg joint"
+    //% block="get the servo Angle of the %part %joint leg joint"
     export function get_servo_angle(part: body_parts_enum, joint: joint_enum) {
         let commands_buffer = pins.createBuffer(9)
         basic.pause(50)
@@ -1598,6 +1609,44 @@ namespace xgo {
         commands_buffer[6] = ~(0x09 + 0x00 + 0x77 + commands_buffer[5])
         serial.writeBuffer(commands_buffer)
         basic.pause(1000)
+    }
+
+    //% group="Robot Arm(V2)"
+    /*步态微调 设置运动步态为（对角/行走/高抬腿/微调）*/
+    //% weight=150
+    //% block="Set motion gait to %state"
+    //% mm.min=0 mm.max=100 
+    export function gaitFineTuning(state: walkState_enum) {
+        let commands_buffer = pins.createBuffer(9)
+        let data = 0
+
+        switch (state) {
+            
+            case walkState_enum.diagonal:
+                data = 0x00
+                break
+            case walkState_enum.walk:
+                data = 0x01
+                break
+            case walkState_enum.highLegLift:
+                data = 0x02
+                break
+            case walkState_enum.fineTuning:
+                data = 0x03
+                break
+        }
+
+        commands_buffer[0] = 0x55
+        commands_buffer[1] = 0x00
+        commands_buffer[2] = 0x09
+        commands_buffer[3] = 0x00
+        commands_buffer[4] = 0x09
+        commands_buffer[7] = 0x00
+        commands_buffer[8] = 0xAA
+        commands_buffer[5] = data
+        commands_buffer[6] = ~(0x09 + 0x00 + 0x09 + data)
+        serial.writeBuffer(commands_buffer)
+        //basic.pause(1000)
     }
 
     //% group="Robot Arm(V2)"

@@ -55,6 +55,10 @@
     "xgo.direction_enum.Backward|block": "后",
     "xgo.direction_enum.Left|block": "左",
     "xgo.direction_enum.Right|block": "右",
+    "xgo.walkState_enum.diagonal|block": "对角",
+    "xgo.walkState_enum.walk|block": "行走",
+    "xgo.walkState_enum.highLegLift|block": "高抬腿",
+    "xgo.walkState_enum.fineTuning|block": "微调",
     "xgo.move_xgo|block": "向%direction 移动，速度为%speed\\%",
     "xgo.body_height|block": "身体高度 %height\\%",
     "xgo.rotate_enum.Left|block": "左",
@@ -96,5 +100,6 @@
     "{id:group}Set Servo": "设置舵机",
     "{id:group}Sports": "运动",
     "{id:group}Robot Arm(V2)": "机械臂(V2)",
-    "xgo.servo_setting_robotArm|block": "设置机械臂舵机%on_off"
+    "xgo.servo_setting_robotArm|block": "设置机械臂舵机%on_off",
+    "xgo.gaitFineTuning|block": "设置运动步态为%state"
 }
